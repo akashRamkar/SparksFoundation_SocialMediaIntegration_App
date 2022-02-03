@@ -5,13 +5,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-31dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+
+                android:layout_marginLeft="45dp"
+
+                android:layout_marginRight="45dp"
+                android:layout_weight="1"
+                android:elevation="10dp"
+                android:padding="0dp"
+                android:text="@string/google_sign_in"
+                android:textSize="24sp"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/common_google_signin_btn_icon_light_normal"
+
+                app:iconGravity="textStart"
+                app:iconPadding="1dp"
+                app:iconTint="@null">
+
+            </com.google.android.material.button.MaterialButton>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="64dp"
+                android:layout_gravity="end"
+
+                android:layout_marginLeft="45dp"
+
+                android:layout_marginRight="45dp"
+                android:layout_weight="1"
+                android:elevation="10dp"
+                android:padding="0dp"
+                android:paddingTop="2dp"
+                android:text="@string/google_sign_in"
+                android:textSize="24sp"
+                app:cornerRadius="10dp"
+
+                app:icon="@drawable/facebook"
+                app:iconGravity="textStart"
+
+                app:iconPadding="1dp"
+                app:iconSize="50dp"
+                app:iconTint="@color/white">
+
+            </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
