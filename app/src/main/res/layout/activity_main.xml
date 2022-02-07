@@ -51,6 +51,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
+                android:id="@+id/gitHub_btn"
                 android:layout_height="64dp"
                 android:layout_gravity="end"
 

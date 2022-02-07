@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">SocialMediaLogin</string>
     <string name="google_sign_in">Google Sign In</string>
+    <string name="github_sign_in">GitHub Sign In</string>
     <string name="default_web_client_id1">121039812575-ucjh9u4gh97btrtgloru49nrfb8docdt.apps.googleusercontent.com</string>
 
 
