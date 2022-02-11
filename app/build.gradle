@@ -26,6 +26,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -43,6 +46,8 @@ dependencies {
 
         // Also declare the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

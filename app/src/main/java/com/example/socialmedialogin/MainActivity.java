@@ -43,13 +43,14 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private OAuthProvider.Builder provider;
     MaterialButton googleSignInBtn,gitHubSignInBtn;
+    static  String logged_in_user="";
 
     private FirebaseAuth mAuth;
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+       // FirebaseUser currentUser = mAuth.getCurrentUser();
         // updateUI(currentUser);
     }
     @Override
@@ -144,6 +145,10 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(),"sign-in-succesfully",Toast.LENGTH_SHORT).show();
+                            // FirebaseUser currentLoggedInUser = FirebaseAuth.getInstance().getCurrentUser();
+                            startActivity(new Intent(getApplicationContext(),CurrentUserInformationActivity.class));
+
+
 
                         } else {
 
@@ -155,10 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void signOutUser(){
-        FirebaseAuth.getInstance().signOut();
-        Toast.makeText(getApplicationContext(), "sign-out-succefully", Toast.LENGTH_SHORT).show();
-    }
+
 
    void getPendingAuthResult(){
         Task<AuthResult> pendingResultTask = mAuth.getPendingAuthResult();
