@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 public class CurrentUserInformationActivity extends AppCompatActivity {
-    private ShapeableImageView imageView;
+    ImageView imageView;
     MaterialTextView name,email;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +26,17 @@ public class CurrentUserInformationActivity extends AppCompatActivity {
         name=findViewById(R.id.user_name);
         email=findViewById(R.id.user_mail);
         imageView=findViewById(R.id.user_image);
+        Intent mainActivityIntent=getIntent();
+        currentUser=mainActivityIntent.getParcelableExtra("user");
+        Picasso.get().load(currentUser.getProfileImage()).into(imageView);
+        name.setText(currentUser.getUserName().toString());
+
+
     }
     public void signOutUser(View v){
         FirebaseAuth.getInstance().signOut();
-        Toast.makeText(getApplicationContext(), "sign-out-succefully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "sign-out-succefully"+currentUser.getUserName(), Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 }

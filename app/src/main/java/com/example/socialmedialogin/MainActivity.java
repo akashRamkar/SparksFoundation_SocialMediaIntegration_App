@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private OAuthProvider.Builder provider;
     MaterialButton googleSignInBtn,gitHubSignInBtn;
     static  String logged_in_user="";
+    static Intent mSendIntent;
+    static  User mUser;
 
     private FirebaseAuth mAuth;
     @Override
@@ -145,8 +147,10 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(),"sign-in-succesfully",Toast.LENGTH_SHORT).show();
-                            // FirebaseUser currentLoggedInUser = FirebaseAuth.getInstance().getCurrentUser();
-                            startActivity(new Intent(getApplicationContext(),CurrentUserInformationActivity.class));
+
+                            mUser=getUser();
+                           updateUI(mUser);
+                           mUser=null;
 
 
 
@@ -201,9 +205,17 @@ public class MainActivity extends AppCompatActivity {
                                 // User is signed in.
                                 // IdP data available in
                                 // authResult.getAdditionalUserInfo().getProfile().
-                                Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
                                 // The OAuth access token can also be retrieved:
                                 // authResult.getCredential().getAccessToken().
+//                                String name=getUser().getUserName();
+//                                Uri img=authResult.getUser().getPhotoUrl();
+//                                mUser=new User(img,name);
+
+
+//                                updateUI(mUser);
+//                                mUser=null;
+
                             }
                         })
                 .addOnFailureListener(
@@ -216,6 +228,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+  private User getUser(){
+      FirebaseUser currentLoggedInUser =mAuth.getCurrentUser();
+      assert currentLoggedInUser != null;
+      Uri image=currentLoggedInUser.getPhotoUrl();
+      String name=currentLoggedInUser.getDisplayName();
+      return new User(image,name);
+  }
+  private void updateUI(User user){
+      mSendIntent =new Intent(getApplicationContext(),CurrentUserInformationActivity.class);
+      mSendIntent.putExtra("user",user);
+      startActivity(mSendIntent);
+      finish();
+  }
 
 
 }
