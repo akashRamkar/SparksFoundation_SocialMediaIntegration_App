@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Splash_Screen"
     android:orientation="vertical"
-   android:background="#fb8c00">
+   android:background="@color/material_amber_600">
 
     <ImageView
         android:id="@+id/tsf_arrow"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
-        android:background="@color/white"
+        android:background="@color/white_gray_light"
 
         android:layout_marginTop="150dp"
         android:scaleType="centerInside"
@@ -38,8 +38,10 @@
         android:paddingBottom="2dp"
         android:text="@string/internship_batch_details"
         android:textAlignment="center"
-        android:textColor="@color/white_gray"
-        android:textSize="32sp"
+        android:textColor="@color/material_white"
+        android:textSize="30sp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:layout_marginBottom="190dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
