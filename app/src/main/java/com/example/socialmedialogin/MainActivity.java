@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        showToast(getApplicationContext(),"callback success");
+                      //  showToast(getApplicationContext(),"callback success");
 
                        handleFacebookAccessToken(loginResult.getAccessToken());
 
@@ -185,8 +185,10 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         } else {
+                            LoginManager.getInstance().logOut();
+                            showToast(getApplicationContext(),"ui-update-failed\n");
+                            showToast(getApplicationContext(),"you already signed-up with google\n");
 
-                            showToast(getApplicationContext(),"ui-update-failed");
                         }
                     }
                 });
@@ -236,10 +238,11 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "sign-in-succesfully", Toast.LENGTH_SHORT).show();
                             mUser = getUser();
                             updateUI(mUser);
-                            mUser = null;
+
 
                         } else {
-
+                            FirebaseAuth.getInstance().signOut();
+                            showToast(getApplicationContext(),"you already signed up using facebook\n");
                         }
                     }
                 });
@@ -252,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
         image = mFirebaseUser.getPhotoUrl();
         name = mFirebaseUser.getDisplayName();
         mail = mFirebaseUser.getEmail();
+        mFirebaseUser=null;
         return new User(image, name, mail);
     }
 

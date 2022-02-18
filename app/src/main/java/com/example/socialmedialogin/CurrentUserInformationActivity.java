@@ -39,7 +39,7 @@ public class CurrentUserInformationActivity extends AppCompatActivity {
     public void signOutUser(View v){
         FirebaseAuth.getInstance().signOut();
         LoginManager.getInstance().logOut();
-        Toast.makeText(getApplicationContext(), "sign-out-succefully"+currentUser.getUserName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "sign-out-succefully", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
         finish();
     }
