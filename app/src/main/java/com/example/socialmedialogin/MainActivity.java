@@ -3,8 +3,13 @@ package com.example.socialmedialogin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -34,6 +39,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -132,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        getFacebookReleaseKeyHashLog();
 
 
     }
@@ -269,6 +278,30 @@ public class MainActivity extends AppCompatActivity {
     private void showToast(Context activityContex,String content){
         Toast.makeText(activityContex,content, Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    //this method gets the facebook android release key hash
+    private void getFacebookReleaseKeyHashLog(){
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    getPackageName(),  //Or replace to your package name directly, instead getPackageName()  "com.your.app"
+                    PackageManager.GET_SIGNATURES);
+
+            for (Signature signature : info.signatures) {
+                MessageDigest md = null;
+                try {
+                    md = MessageDigest.getInstance("SHA");
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+                md.update(signature.toByteArray());
+
+                Log.e("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        }
     }
 }
 
